@@ -1,16 +1,15 @@
 [package]
-name = "tree-sitter-python"
-description = "Python grammar for tree-sitter"
-version = "0.23.6"
+name = "tree-sitter-rust"
+description = "Rsml grammar for tree-sitter"
+version = "0.1.0"
 authors = [
-  "Max Brunsfeld <maxbrunsfeld@gmail.com>",
-  "Amaan Qureshi <amaanq12@gmail.com>",
+  "Cameron Campbell",
 ]
 license = "MIT"
 readme = "README.md"
-keywords = ["incremental", "parsing", "tree-sitter", "python"]
+keywords = ["incremental", "parsing", "tree-sitter", "rsml"]
 categories = ["parser-implementations", "parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-python"
+repository = "https://github.com/rbx-rsml-tree-sitter-py"
 edition = "2021"
 autoexamples = false
 
