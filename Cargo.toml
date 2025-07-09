@@ -1,5 +1,5 @@
 [package]
-name = "tree-sitter-rust"
+name = "tree-sitter-rsml"
 description = "Rsml grammar for tree-sitter"
 version = "0.1.0"
 authors = [
