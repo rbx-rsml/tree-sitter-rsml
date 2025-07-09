@@ -1,0 +1,38 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "rsml",
+      "camelcase": "Rsml",
+      "title": "Rsml",
+      "scope": "source.rsml",
+      "file-types": [
+        "rsml"
+      ],
+      "injection-regex": "^rsml$",
+      "class-name": "TreeSitterRsml"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Rsml grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Cameron P Campbell"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter/tree-sitter-rsml"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

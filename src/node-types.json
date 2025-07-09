@@ -1,0 +1,1110 @@
+[
+  {
+    "type": "block_string",
+    "named": true,
+    "fields": {
+      "content": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string_content",
+            "named": true
+          }
+        ]
+      },
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "]]",
+            "named": false
+          }
+        ]
+      },
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "[[",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "class_selector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "colon",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "color",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "color_code_brick",
+          "named": true
+        },
+        {
+          "type": "color_code_css",
+          "named": true
+        },
+        {
+          "type": "color_code_skin",
+          "named": true
+        },
+        {
+          "type": "color_code_tailwind",
+          "named": true
+        },
+        {
+          "type": "color_hex",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "color_code_brick",
+    "named": true,
+    "fields": {
+      "color": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "static_argument",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "color_code_css",
+    "named": true,
+    "fields": {
+      "color": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "static_argument",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "color_code_skin",
+    "named": true,
+    "fields": {
+      "color": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "static_argument",
+            "named": true
+          }
+        ]
+      },
+      "shade": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "static_argument",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "color_code_tailwind",
+    "named": true,
+    "fields": {
+      "color": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "static_argument",
+            "named": true
+          }
+        ]
+      },
+      "shade": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "static_argument",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {
+      "content": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "comment_content",
+            "named": true
+          }
+        ]
+      },
+      "end": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "]]",
+            "named": false
+          }
+        ]
+      },
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "--",
+            "named": false
+          },
+          {
+            "type": "[[",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "datatype",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "color",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "macro_call",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "rbx_asset",
+          "named": true
+        },
+        {
+          "type": "rbx_content",
+          "named": true
+        },
+        {
+          "type": "reference",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tuple",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "derive_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "derive_value",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "derive_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comma",
+          "named": true
+        },
+        {
+          "type": "derive_value",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tuple_close",
+          "named": true
+        },
+        {
+          "type": "tuple_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_full",
+          "named": true
+        },
+        {
+          "type": "enum_shorthand",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_full",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_shorthand",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "macro_args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comma",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        },
+        {
+          "type": "static_argument",
+          "named": true
+        },
+        {
+          "type": "tuple_close",
+          "named": true
+        },
+        {
+          "type": "tuple_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comma",
+          "named": true
+        },
+        {
+          "type": "datatype",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        },
+        {
+          "type": "tuple_close",
+          "named": true
+        },
+        {
+          "type": "tuple_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_args",
+          "named": true
+        },
+        {
+          "type": "macro_scope",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_scope",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "derive_declaration",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "rule_scope",
+            "named": true
+          },
+          {
+            "type": "semi_colon",
+            "named": true
+          },
+          {
+            "type": "static_argument",
+            "named": true
+          },
+          {
+            "type": "static_token_assignment",
+            "named": true
+          },
+          {
+            "type": "token_assignment",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "scope_close",
+          "named": true
+        },
+        {
+          "type": "scope_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "name_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "semi_colon",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_ambiguous",
+          "named": true
+        },
+        {
+          "type": "number_offset",
+          "named": true
+        },
+        {
+          "type": "number_percent",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "datatype",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "add_operator",
+          "named": true
+        },
+        {
+          "type": "div_operator",
+          "named": true
+        },
+        {
+          "type": "floor_div_operator",
+          "named": true
+        },
+        {
+          "type": "mod_operator",
+          "named": true
+        },
+        {
+          "type": "mult_operator",
+          "named": true
+        },
+        {
+          "type": "pow_operator",
+          "named": true
+        },
+        {
+          "type": "sub_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "priority_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_assignment",
+    "named": true,
+    "fields": {
+      "property_assignment": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "datatype",
+            "named": true
+          },
+          {
+            "type": "equals",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "semi_colon",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "static_argument",
+          "named": true
+        },
+        {
+          "type": "static_token",
+          "named": true
+        },
+        {
+          "type": "token",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_scope",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "rule_scope_inner",
+            "named": true
+          }
+        ]
+      },
+      "selector": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "comma",
+            "named": true
+          },
+          {
+            "type": "selector",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "scope_close",
+          "named": true
+        },
+        {
+          "type": "scope_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_scope_inner",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "name_declaration",
+          "named": true
+        },
+        {
+          "type": "priority_declaration",
+          "named": true
+        },
+        {
+          "type": "property_assignment",
+          "named": true
+        },
+        {
+          "type": "rule_scope",
+          "named": true
+        },
+        {
+          "type": "static_token_assignment",
+          "named": true
+        },
+        {
+          "type": "token_assignment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class_selector",
+          "named": true
+        },
+        {
+          "type": "name_selector",
+          "named": true
+        },
+        {
+          "type": "pseudo_selector",
+          "named": true
+        },
+        {
+          "type": "state_selector",
+          "named": true
+        },
+        {
+          "type": "static_argument",
+          "named": true
+        },
+        {
+          "type": "tag_selector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "derive_declaration",
+          "named": true
+        },
+        {
+          "type": "macro_declaration",
+          "named": true
+        },
+        {
+          "type": "rule_scope",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        },
+        {
+          "type": "static_token_assignment",
+          "named": true
+        },
+        {
+          "type": "token_assignment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "state_selector",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "static_token_assignment",
+    "named": true,
+    "fields": {
+      "static_token_assignment": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "datatype",
+            "named": true
+          },
+          {
+            "type": "equals",
+            "named": true
+          },
+          {
+            "type": "semi_colon",
+            "named": true
+          },
+          {
+            "type": "static_token",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block_string",
+          "named": true
+        },
+        {
+          "type": "double_quote_string",
+          "named": true
+        },
+        {
+          "type": "single_quote_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "token_assignment",
+    "named": true,
+    "fields": {
+      "token_assignment": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "datatype",
+            "named": true
+          },
+          {
+            "type": "equals",
+            "named": true
+          },
+          {
+            "type": "semi_colon",
+            "named": true
+          },
+          {
+            "type": "token",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "tuple",
+    "named": true,
+    "fields": {
+      "annotation": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comma",
+          "named": true
+        },
+        {
+          "type": "datatype",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        },
+        {
+          "type": "tuple_close",
+          "named": true
+        },
+        {
+          "type": "tuple_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "--",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "@derive",
+    "named": false
+  },
+  {
+    "type": "@macro",
+    "named": false
+  },
+  {
+    "type": "@name",
+    "named": false
+  },
+  {
+    "type": "@priority",
+    "named": false
+  },
+  {
+    "type": "Enum",
+    "named": false
+  },
+  {
+    "type": "[[",
+    "named": false
+  },
+  {
+    "type": "]]",
+    "named": false
+  },
+  {
+    "type": "add_operator",
+    "named": true
+  },
+  {
+    "type": "color_hex",
+    "named": true
+  },
+  {
+    "type": "comma",
+    "named": true
+  },
+  {
+    "type": "comment_content",
+    "named": true
+  },
+  {
+    "type": "div_operator",
+    "named": true
+  },
+  {
+    "type": "double_quote_string",
+    "named": true
+  },
+  {
+    "type": "equals",
+    "named": true
+  },
+  {
+    "type": "floor_div_operator",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "mod_operator",
+    "named": true
+  },
+  {
+    "type": "mult_operator",
+    "named": true
+  },
+  {
+    "type": "name_selector",
+    "named": true
+  },
+  {
+    "type": "number_ambiguous",
+    "named": true
+  },
+  {
+    "type": "number_offset",
+    "named": true
+  },
+  {
+    "type": "number_percent",
+    "named": true
+  },
+  {
+    "type": "pow_operator",
+    "named": true
+  },
+  {
+    "type": "pseudo_selector",
+    "named": true
+  },
+  {
+    "type": "rbx_asset",
+    "named": true
+  },
+  {
+    "type": "rbx_content",
+    "named": true
+  },
+  {
+    "type": "scope_close",
+    "named": true
+  },
+  {
+    "type": "scope_open",
+    "named": true
+  },
+  {
+    "type": "semi_colon",
+    "named": true
+  },
+  {
+    "type": "single_quote_string",
+    "named": true
+  },
+  {
+    "type": "static_argument",
+    "named": true
+  },
+  {
+    "type": "static_token",
+    "named": true
+  },
+  {
+    "type": "string_content",
+    "named": true
+  },
+  {
+    "type": "sub_operator",
+    "named": true
+  },
+  {
+    "type": "tag_selector",
+    "named": true
+  },
+  {
+    "type": "token",
+    "named": true
+  },
+  {
+    "type": "tuple_close",
+    "named": true
+  },
+  {
+    "type": "tuple_open",
+    "named": true
+  }
+]
