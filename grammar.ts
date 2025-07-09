@@ -25,7 +25,7 @@ const create_color_code = (
     color: string | SymbolRule<string>,
     shade: string | SymbolRule<string> | null
 ) => {
-    return prec(999, seq(
+    return prec.left(999, seq(
         ...array_remove_null([
             field("name", new RustRegex(`(?i)${name}:`)),
             
@@ -50,9 +50,14 @@ const create_color_code = (
 }
 
 const create_list = (
-    item: SymbolRule<string> | SeqRule,
-    sep: SymbolRule<string> | ChoiceRule
+    item: RuleOrLiteral,
+    sep: RuleOrLiteral
 ) => seq(optional(sep), repeat(seq(item, sep)), item)
+
+const auto_prec_choice = (start: number, items: RuleOrLiteral[]) => {
+    let len_items = items.length
+    return choice(...items.map((item, idx) => prec(start + (len_items - idx), item)))
+}
 
 // rules can't be used inside `token` or `token`.
 const IDENTIFIER = new RustRegex("[_a-zA-Z][_a-zA-Z\\d]*")
@@ -100,9 +105,9 @@ module.exports = grammar({
         static_argument: $ => token(seq("&", IDENTIFIER)),
         reference: $ => choice($.static_token, $.static_argument, $.token),
 
-        property_assignment: $ => field("property_assignment", seq($.identifier, $.equals, optional($.datatype), $.semi_colon)),
-        token_assignment: $ => field("token_assignment", seq($.token, $.equals, optional($.datatype), $.semi_colon)),
-        static_token_assignment: $ => field("static_token_assignment", seq($.static_token, $.equals, optional($.datatype), $.semi_colon)),
+        property_assignment: $ => prec(5, field("property_assignment", seq($.identifier, $.equals, optional($.datatype), $.semi_colon))),
+        token_assignment: $ => prec(5, field("token_assignment", seq($.token, $.equals, optional($.datatype), $.semi_colon))),
+        static_token_assignment: $ => prec(5, field("static_token_assignment", seq($.static_token, $.equals, optional($.datatype), $.semi_colon))),
 
         macro_declaration: $ => seq("@macro", $.identifier, optional($.macro_args), $.macro_scope),
         macro_args: $ => seq(
@@ -112,13 +117,20 @@ module.exports = grammar({
         ),
         macro_scope: $ => seq(
             $.scope_open,
-            field("body", repeat(choice(
-                $._definition_no_macro,
-                prec(1, $.static_argument),
-                prec(2, $.identifier)
-            ))),
+            field("body", repeat($.macro_body)),
             $.scope_close
         ),
+        macro_body: $ => auto_prec_choice(999, [
+            $.datatype,
+            $._definition_no_macro,
+            $.comma, $.semi_colon, $.colon, $.equals,
+            $.selector,
+            $.static_argument,
+            $.identifier,
+            $.operator,
+            $.priority_declaration,
+            $.name_declaration
+        ]),
 
         macro_call: $ => seq(
             field("annotation", token(seq(IDENTIFIER, "!"))),
@@ -152,12 +164,14 @@ module.exports = grammar({
 
         scope_open: $ => "{",
         scope_close: $ => "}",
+        scope_bounds: $ => choice($.scope_open, $.scope_close),
 
         tuple_open: $ => "(",
         tuple_close: $ => ")",
+        tuple_bounds: $ => choice($.tuple_open, $.tuple_close),
 
         rule_scope: $ => seq(
-            field("selector", create_list($.selector, $.comma)),
+            field("selector", create_list($.selector, optional($.comma))),
             $.scope_open,
             field("body", repeat($.rule_scope_inner)),
             $.scope_close
@@ -239,7 +253,7 @@ module.exports = grammar({
             choice(".", $.colon),
             $.identifier,
         ),
-        enum_shorthand: $ => token(seq(":", IDENTIFIER)),
+        enum_shorthand: $ => prec(5, token(seq(":", IDENTIFIER))),
 
         rbx_asset: $ => token(choice(
             new RustRegex("(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://[^) ]*"),

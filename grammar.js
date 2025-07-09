@@ -8,7 +8,7 @@ var BRICK_COLORS = "white|grey|lightyellow|brickyellow|lightgreen|lightreddishvi
 var CSS_COLORS = "aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|goldenrod|gold|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavenderblush|lavender|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen";
 var array_remove_null = function (arr) { return arr.filter(function (e) { return e !== null; }); };
 var create_color_code = function ($, name, color, shade) {
-    return prec(999, seq.apply(void 0, array_remove_null([
+    return prec.left(999, seq.apply(void 0, array_remove_null([
         field("name", new RustRegex("(?i)".concat(name, ":"))),
         field("color", choice(typeof color == "string"
             ? new RustRegex("(?i)".concat(color))
@@ -19,6 +19,10 @@ var create_color_code = function ($, name, color, shade) {
     ])));
 };
 var create_list = function (item, sep) { return seq(optional(sep), repeat(seq(item, sep)), item); };
+var auto_prec_choice = function (start, items) {
+    var len_items = items.length;
+    return choice.apply(void 0, items.map(function (item, idx) { return prec(start + (len_items - idx), item); }));
+};
 // rules can't be used inside `token` or `token`.
 var IDENTIFIER = new RustRegex("[_a-zA-Z][_a-zA-Z\\d]*");
 var NUMBER_AMIGUOUS = new RustRegex("[\\d_]*\\.?[\\d_]+");
@@ -46,12 +50,23 @@ module.exports = grammar({
         static_token: function ($) { return token(seq("$!", IDENTIFIER)); },
         static_argument: function ($) { return token(seq("&", IDENTIFIER)); },
         reference: function ($) { return choice($.static_token, $.static_argument, $.token); },
-        property_assignment: function ($) { return field("property_assignment", seq($.identifier, $.equals, optional($.datatype), $.semi_colon)); },
-        token_assignment: function ($) { return field("token_assignment", seq($.token, $.equals, optional($.datatype), $.semi_colon)); },
-        static_token_assignment: function ($) { return field("static_token_assignment", seq($.static_token, $.equals, optional($.datatype), $.semi_colon)); },
+        property_assignment: function ($) { return prec(5, field("property_assignment", seq($.identifier, $.equals, optional($.datatype), $.semi_colon))); },
+        token_assignment: function ($) { return prec(5, field("token_assignment", seq($.token, $.equals, optional($.datatype), $.semi_colon))); },
+        static_token_assignment: function ($) { return prec(5, field("static_token_assignment", seq($.static_token, $.equals, optional($.datatype), $.semi_colon))); },
         macro_declaration: function ($) { return seq("@macro", $.identifier, optional($.macro_args), $.macro_scope); },
         macro_args: function ($) { return seq($.tuple_open, create_list($.static_argument, choice($.comma, $.semi_colon)), $.tuple_close); },
-        macro_scope: function ($) { return seq($.scope_open, field("body", repeat(choice($._definition_no_macro, prec(1, $.static_argument), prec(2, $.identifier)))), $.scope_close); },
+        macro_scope: function ($) { return seq($.scope_open, field("body", repeat($.macro_body)), $.scope_close); },
+        macro_body: function ($) { return auto_prec_choice(999, [
+            $.datatype,
+            $._definition_no_macro,
+            $.comma, $.semi_colon, $.colon, $.equals,
+            $.selector,
+            $.static_argument,
+            $.identifier,
+            $.operator,
+            $.priority_declaration,
+            $.name_declaration
+        ]); },
         macro_call: function ($) { return seq(field("annotation", token(seq(IDENTIFIER, "!"))), $.tuple_open, create_list($.datatype, choice($.comma, $.semi_colon)), $.tuple_close); },
         priority_declaration: function ($) { return seq('@priority', optional($.number), $.semi_colon); },
         name_declaration: function ($) { return seq('@name', optional($.string), $.semi_colon); },
@@ -65,9 +80,11 @@ module.exports = grammar({
         selector: function ($) { return choice($.class_selector, $.name_selector, $.tag_selector, $.state_selector, $.pseudo_selector, $.static_argument); },
         scope_open: function ($) { return "{"; },
         scope_close: function ($) { return "}"; },
+        scope_bounds: function ($) { return choice($.scope_open, $.scope_close); },
         tuple_open: function ($) { return "("; },
         tuple_close: function ($) { return ")"; },
-        rule_scope: function ($) { return seq(field("selector", create_list($.selector, $.comma)), $.scope_open, field("body", repeat($.rule_scope_inner)), $.scope_close); },
+        tuple_bounds: function ($) { return choice($.tuple_open, $.tuple_close); },
+        rule_scope: function ($) { return seq(field("selector", create_list($.selector, optional($.comma))), $.scope_open, field("body", repeat($.rule_scope_inner)), $.scope_close); },
         rule_scope_inner: function ($) { return choice($.rule_scope, $.priority_declaration, $.name_declaration, $.property_assignment, $.token_assignment, $.static_token_assignment); },
         datatype: function ($) { return choice($.color, $.macro_call, $.tuple, $.number, $.string, $.enum, $.rbx_asset, $.rbx_content, $.reference, $.operation); },
         tuple: function ($) { return seq(field("annotation", optional($.identifier)), $.tuple_open, create_list($.datatype, choice($.comma, $.semi_colon)), $.tuple_close); },
@@ -97,7 +114,7 @@ module.exports = grammar({
         color_hex: function ($) { return new RustRegex("#[\\da-fA-F]+"); },
         enum: function ($) { return choice($.enum_full, $.enum_shorthand); },
         enum_full: function ($) { return seq("Enum", choice(".", $.colon), $.identifier, choice(".", $.colon), $.identifier); },
-        enum_shorthand: function ($) { return token(seq(":", IDENTIFIER)); },
+        enum_shorthand: function ($) { return prec(5, token(seq(":", IDENTIFIER))); },
         rbx_asset: function ($) { return token(choice(new RustRegex("(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://[^) ]*"), new RustRegex("rbxassetid://\\d*"))); },
         rbx_content: function ($) { return token(new RustRegex("contentid://\\d+")); },
         comment: function ($) { return choice(seq(field('start', '--'), field('content', alias(/[^\r\n]*/, $.comment_content))), seq(field('start', alias($._block_comment_start, '[[')), field('content', alias($._block_comment_content, $.comment_content)), field('end', alias($._block_comment_end, ']]')))); },
