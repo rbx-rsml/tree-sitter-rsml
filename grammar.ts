@@ -135,7 +135,7 @@ module.exports = grammar({
         macro_call: $ => seq(
             field("annotation", token(seq(IDENTIFIER, "!"))),
             $.tuple_open,
-            create_list($.datatype, choice($.comma, $.semi_colon)),
+            optional(create_list($.datatype, choice($.comma, $.semi_colon))),
             $.tuple_close
         ),
 
@@ -171,7 +171,7 @@ module.exports = grammar({
         tuple_bounds: $ => choice($.tuple_open, $.tuple_close),
 
         rule_scope: $ => seq(
-            field("selector", create_list($.selector, optional($.comma))),
+            field("selector", optional(create_list($.selector, optional($.comma)))),
             $.scope_open,
             field("body", repeat($.rule_scope_inner)),
             $.scope_close

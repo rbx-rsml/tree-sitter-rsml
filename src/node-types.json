@@ -730,7 +730,7 @@
       },
       "selector": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "comma",
