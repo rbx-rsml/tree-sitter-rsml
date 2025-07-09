@@ -723,7 +723,7 @@
         "required": false,
         "types": [
           {
-            "type": "rule_scope_inner",
+            "type": "rule_scope_body",
             "named": true
           }
         ]
@@ -759,7 +759,7 @@
     }
   },
   {
-    "type": "rule_scope_inner",
+    "type": "rule_scope_body",
     "named": true,
     "fields": {},
     "children": {
@@ -780,6 +780,10 @@
         },
         {
           "type": "rule_scope",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
           "named": true
         },
         {

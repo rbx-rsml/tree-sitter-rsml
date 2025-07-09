@@ -30,7 +30,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "semi_colon"
+          "name": "_definition_scope_body"
         }
       ]
     },
@@ -44,6 +44,15 @@
         {
           "type": "SYMBOL",
           "name": "_definition_no_macro"
+        }
+      ]
+    },
+    "_definition_scope_body": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "semi_colon"
         }
       ]
     },
@@ -369,7 +378,7 @@
       "members": [
         {
           "type": "PREC",
-          "value": 1011,
+          "value": 1012,
           "content": {
             "type": "SYMBOL",
             "name": "datatype"
@@ -377,7 +386,7 @@
         },
         {
           "type": "PREC",
-          "value": 1010,
+          "value": 1011,
           "content": {
             "type": "SYMBOL",
             "name": "_definition_no_macro"
@@ -385,7 +394,7 @@
         },
         {
           "type": "PREC",
-          "value": 1009,
+          "value": 1010,
           "content": {
             "type": "SYMBOL",
             "name": "comma"
@@ -393,7 +402,7 @@
         },
         {
           "type": "PREC",
-          "value": 1008,
+          "value": 1009,
           "content": {
             "type": "SYMBOL",
             "name": "semi_colon"
@@ -401,7 +410,7 @@
         },
         {
           "type": "PREC",
-          "value": 1007,
+          "value": 1008,
           "content": {
             "type": "SYMBOL",
             "name": "colon"
@@ -409,7 +418,7 @@
         },
         {
           "type": "PREC",
-          "value": 1006,
+          "value": 1007,
           "content": {
             "type": "SYMBOL",
             "name": "equals"
@@ -417,7 +426,7 @@
         },
         {
           "type": "PREC",
-          "value": 1005,
+          "value": 1006,
           "content": {
             "type": "SYMBOL",
             "name": "selector"
@@ -425,7 +434,7 @@
         },
         {
           "type": "PREC",
-          "value": 1004,
+          "value": 1005,
           "content": {
             "type": "SYMBOL",
             "name": "static_argument"
@@ -433,7 +442,7 @@
         },
         {
           "type": "PREC",
-          "value": 1003,
+          "value": 1004,
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -441,7 +450,7 @@
         },
         {
           "type": "PREC",
-          "value": 1002,
+          "value": 1003,
           "content": {
             "type": "SYMBOL",
             "name": "operator"
@@ -449,7 +458,7 @@
         },
         {
           "type": "PREC",
-          "value": 1001,
+          "value": 1002,
           "content": {
             "type": "SYMBOL",
             "name": "priority_declaration"
@@ -457,10 +466,18 @@
         },
         {
           "type": "PREC",
-          "value": 1000,
+          "value": 1001,
           "content": {
             "type": "SYMBOL",
             "name": "name_declaration"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 1000,
+          "content": {
+            "type": "SYMBOL",
+            "name": "_definition_scope_body"
           }
         }
       ]
@@ -923,7 +940,7 @@
             "type": "REPEAT",
             "content": {
               "type": "SYMBOL",
-              "name": "rule_scope_inner"
+              "name": "rule_scope_body"
             }
           }
         },
@@ -933,7 +950,7 @@
         }
       ]
     },
-    "rule_scope_inner": {
+    "rule_scope_body": {
       "type": "CHOICE",
       "members": [
         {
@@ -959,6 +976,10 @@
         {
           "type": "SYMBOL",
           "name": "static_token_assignment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_definition_scope_body"
         }
       ]
     },

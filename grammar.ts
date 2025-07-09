@@ -86,11 +86,15 @@ module.exports = grammar({
             $.token_assignment,
             $.rule_scope,
             $.derive_declaration,
-            $.semi_colon
+            $._definition_scope_body
         ),
         _definition: $ => choice(
             $.macro_declaration,
             $._definition_no_macro
+        ),
+
+        _definition_scope_body: $ => choice(
+            $.semi_colon
         ),
 
         identifier: $ => IDENTIFIER,
@@ -129,7 +133,8 @@ module.exports = grammar({
             $.identifier,
             $.operator,
             $.priority_declaration,
-            $.name_declaration
+            $.name_declaration,
+            $._definition_scope_body
         ]),
 
         macro_call: $ => seq(
@@ -173,16 +178,17 @@ module.exports = grammar({
         rule_scope: $ => seq(
             field("selector", optional(create_list($.selector, optional($.comma)))),
             $.scope_open,
-            field("body", repeat($.rule_scope_inner)),
+            field("body", repeat($.rule_scope_body)),
             $.scope_close
         ),
-        rule_scope_inner: $ => choice(
+        rule_scope_body: $ => choice(
             $.rule_scope,
             $.priority_declaration,
             $.name_declaration,
             $.property_assignment,
             $.token_assignment,
-            $.static_token_assignment
+            $.static_token_assignment,
+            $._definition_scope_body
         ),
 
         datatype: $ => choice(

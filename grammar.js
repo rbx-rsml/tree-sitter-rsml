@@ -39,8 +39,9 @@ module.exports = grammar({
     ]; },
     rules: {
         source_file: function ($) { return repeat($._definition); },
-        _definition_no_macro: function ($) { return choice($.static_token_assignment, $.token_assignment, $.rule_scope, $.derive_declaration, $.semi_colon); },
+        _definition_no_macro: function ($) { return choice($.static_token_assignment, $.token_assignment, $.rule_scope, $.derive_declaration, $._definition_scope_body); },
         _definition: function ($) { return choice($.macro_declaration, $._definition_no_macro); },
+        _definition_scope_body: function ($) { return choice($.semi_colon); },
         identifier: function ($) { return IDENTIFIER; },
         comma: function ($) { return ","; },
         semi_colon: function ($) { return ";"; },
@@ -65,7 +66,8 @@ module.exports = grammar({
             $.identifier,
             $.operator,
             $.priority_declaration,
-            $.name_declaration
+            $.name_declaration,
+            $._definition_scope_body
         ]); },
         macro_call: function ($) { return seq(field("annotation", token(seq(IDENTIFIER, "!"))), $.tuple_open, optional(create_list($.datatype, choice($.comma, $.semi_colon))), $.tuple_close); },
         priority_declaration: function ($) { return seq('@priority', optional($.number), $.semi_colon); },
@@ -84,8 +86,8 @@ module.exports = grammar({
         tuple_open: function ($) { return "("; },
         tuple_close: function ($) { return ")"; },
         tuple_bounds: function ($) { return choice($.tuple_open, $.tuple_close); },
-        rule_scope: function ($) { return seq(field("selector", optional(create_list($.selector, optional($.comma)))), $.scope_open, field("body", repeat($.rule_scope_inner)), $.scope_close); },
-        rule_scope_inner: function ($) { return choice($.rule_scope, $.priority_declaration, $.name_declaration, $.property_assignment, $.token_assignment, $.static_token_assignment); },
+        rule_scope: function ($) { return seq(field("selector", optional(create_list($.selector, optional($.comma)))), $.scope_open, field("body", repeat($.rule_scope_body)), $.scope_close); },
+        rule_scope_body: function ($) { return choice($.rule_scope, $.priority_declaration, $.name_declaration, $.property_assignment, $.token_assignment, $.static_token_assignment, $._definition_scope_body); },
         datatype: function ($) { return choice($.color, $.macro_call, $.tuple, $.number, $.string, $.enum, $.rbx_asset, $.rbx_content, $.reference, $.operation); },
         tuple: function ($) { return seq(field("annotation", optional($.identifier)), $.tuple_open, create_list($.datatype, choice($.comma, $.semi_colon)), $.tuple_close); },
         number: function ($) { return choice($.number_ambiguous, $.number_percent, $.number_offset); },
