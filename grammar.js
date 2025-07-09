@@ -55,7 +55,7 @@ module.exports = grammar({
         token_assignment: function ($) { return prec(5, field("token_assignment", seq($.token, $.equals, optional($.datatype), $.semi_colon))); },
         static_token_assignment: function ($) { return prec(5, field("static_token_assignment", seq($.static_token, $.equals, optional($.datatype), $.semi_colon))); },
         macro_declaration: function ($) { return seq("@macro", $.identifier, optional($.macro_args), $.macro_scope); },
-        macro_args: function ($) { return seq($.tuple_open, create_list($.static_argument, choice($.comma, $.semi_colon)), $.tuple_close); },
+        macro_args: function ($) { return seq($.tuple_open, optional(create_list($.static_argument, choice($.comma, $.semi_colon))), $.tuple_close); },
         macro_scope: function ($) { return seq($.scope_open, field("body", repeat($.macro_body)), $.scope_close); },
         macro_body: function ($) { return auto_prec_choice(999, [
             $.datatype,
@@ -89,7 +89,7 @@ module.exports = grammar({
         rule_scope: function ($) { return seq(field("selector", optional(create_list($.selector, optional($.comma)))), $.scope_open, field("body", repeat($.rule_scope_body)), $.scope_close); },
         rule_scope_body: function ($) { return choice($.rule_scope, $.priority_declaration, $.name_declaration, $.property_assignment, $.token_assignment, $.static_token_assignment, $._definition_scope_body); },
         datatype: function ($) { return choice($.color, $.macro_call, $.tuple, $.number, $.string, $.enum, $.rbx_asset, $.rbx_content, $.reference, $.operation); },
-        tuple: function ($) { return seq(field("annotation", optional($.identifier)), $.tuple_open, create_list($.datatype, choice($.comma, $.semi_colon)), $.tuple_close); },
+        tuple: function ($) { return seq(field("annotation", optional($.identifier)), $.tuple_open, optional(create_list($.datatype, choice($.comma, $.semi_colon))), $.tuple_close); },
         number: function ($) { return choice($.number_ambiguous, $.number_percent, $.number_offset); },
         number_ambiguous: function ($) { return NUMBER_AMIGUOUS; },
         number_percent: function ($) { return token(seq(NUMBER_AMIGUOUS, "%")); },

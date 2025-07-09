@@ -116,7 +116,7 @@ module.exports = grammar({
         macro_declaration: $ => seq("@macro", $.identifier, optional($.macro_args), $.macro_scope),
         macro_args: $ => seq(
             $.tuple_open,
-            create_list($.static_argument, choice($.comma, $.semi_colon)),
+            optional(create_list($.static_argument, choice($.comma, $.semi_colon))),
             $.tuple_close,
         ),
         macro_scope: $ => seq(
@@ -207,7 +207,7 @@ module.exports = grammar({
         tuple: $ => seq(
             field("annotation", optional($.identifier)),
             $.tuple_open,
-            create_list($.datatype, choice($.comma, $.semi_colon)),
+            optional(create_list($.datatype, choice($.comma, $.semi_colon))),
             $.tuple_close
         ),
 
