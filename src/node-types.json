@@ -692,6 +692,11 @@
     }
   },
   {
+    "type": "rbx_asset",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "reference",
     "named": true,
     "fields": {},
@@ -1103,12 +1108,12 @@
     "named": true
   },
   {
-    "type": "rbx_asset",
+    "type": "rbx_content",
     "named": true
   },
   {
-    "type": "rbx_content",
-    "named": true
+    "type": "rbxassetid://",
+    "named": false
   },
   {
     "type": "scope_close",

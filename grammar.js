@@ -117,8 +117,8 @@ module.exports = grammar({
         enum: function ($) { return choice($.enum_full, $.enum_shorthand); },
         enum_full: function ($) { return seq("Enum", choice(".", $.colon), $.identifier, choice(".", $.colon), $.identifier); },
         enum_shorthand: function ($) { return prec(5, token(seq(":", IDENTIFIER))); },
-        rbx_asset: function ($) { return token(choice(new RustRegex("(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://[^) ]*"), new RustRegex("rbxassetid://\\d*"))); },
-        rbx_content: function ($) { return token(new RustRegex("contentid://\\d+")); },
+        rbx_asset: function ($) { return prec(9999999, choice(seq(new RustRegex("(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://"), new RustRegex("[^)\\s;,]+")), seq("rbxassetid://", new RustRegex("\\d+")))); },
+        rbx_content: function ($) { return token(seq("contentid://", new RustRegex("\\d+"))); },
         comment: function ($) { return choice(seq(field('start', '--'), field('content', alias(/[^\r\n]*/, $.comment_content))), seq(field('start', alias($._block_comment_start, '[[')), field('content', alias($._block_comment_content, $.comment_content)), field('end', alias($._block_comment_end, ']]')))); },
     }
 });

@@ -1651,17 +1651,36 @@
       }
     },
     "rbx_asset": {
-      "type": "TOKEN",
+      "type": "PREC",
+      "value": 9999999,
       "content": {
         "type": "CHOICE",
         "members": [
           {
-            "type": "PATTERN",
-            "value": "(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://[^) ]*"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^)\\s;,]+"
+              }
+            ]
           },
           {
-            "type": "PATTERN",
-            "value": "rbxassetid://\\d*"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "rbxassetid://"
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\d+"
+              }
+            ]
           }
         ]
       }
@@ -1669,8 +1688,17 @@
     "rbx_content": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "contentid://\\d+"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "contentid://"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\d+"
+          }
+        ]
       }
     },
     "comment": {
