@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-rsml"
 description = "Rsml grammar for tree-sitter"
-version = "0.1.7"
+version = "0.1.8"
 authors = [
   "Cameron Campbell",
 ]
@@ -20,7 +20,7 @@ include = ["LICENSE", "bindings/rust/*", "grammar.js", "queries/*", "src/*", "tr
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter-language = "0.1.5"
+tree-sitter-language = "0.1"
 
 [build-dependencies]
 cc = "1.1"
