@@ -183,9 +183,9 @@ static const char * const ts_symbol_names[] = {
   [anon_sym_Enum] = "Enum",
   [anon_sym_DOT] = ".",
   [aux_sym_rbx_asset_token1] = "rbx_asset_token1",
-  [aux_sym_rbx_asset_token2] = "rbx_asset_token2",
+  [aux_sym_rbx_asset_token2] = "digits",
   [anon_sym_rbxassetid_COLON_SLASH_SLASH] = "rbxassetid://",
-  [aux_sym_rbx_asset_token3] = "rbx_asset_token3",
+  [aux_sym_rbx_asset_token3] = "digits",
   [sym_rbx_content] = "rbx_content",
   [anon_sym_DASH_DASH] = "--",
   [aux_sym_comment_token1] = "comment_content",
@@ -294,7 +294,7 @@ static const TSSymbol ts_symbol_map[] = {
   [aux_sym_rbx_asset_token1] = aux_sym_rbx_asset_token1,
   [aux_sym_rbx_asset_token2] = aux_sym_rbx_asset_token2,
   [anon_sym_rbxassetid_COLON_SLASH_SLASH] = anon_sym_rbxassetid_COLON_SLASH_SLASH,
-  [aux_sym_rbx_asset_token3] = aux_sym_rbx_asset_token3,
+  [aux_sym_rbx_asset_token3] = aux_sym_rbx_asset_token2,
   [sym_rbx_content] = sym_rbx_content,
   [anon_sym_DASH_DASH] = anon_sym_DASH_DASH,
   [aux_sym_comment_token1] = sym__block_comment_content,
@@ -543,7 +543,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .named = false,
   },
   [aux_sym_rbx_asset_token2] = {
-    .visible = false,
+    .visible = true,
     .named = false,
   },
   [anon_sym_rbxassetid_COLON_SLASH_SLASH] = {
@@ -551,7 +551,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .named = false,
   },
   [aux_sym_rbx_asset_token3] = {
-    .visible = false,
+    .visible = true,
     .named = false,
   },
   [sym_rbx_content] = {
@@ -26237,7 +26237,7 @@ TS_PUBLIC const TSLanguage *tree_sitter_rsml(void) {
     .metadata = {
       .major_version = 0,
       .minor_version = 1,
-      .patch_version = 10,
+      .patch_version = 11,
     },
   };
   return &language;

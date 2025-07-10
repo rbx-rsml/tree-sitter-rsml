@@ -264,13 +264,13 @@ module.exports = grammar({
         rbx_asset: $ => prec(9999999, choice(
             seq(
                 new RustRegex("(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://"),
-                new RustRegex("[^)\\s;,]+")
+                alias(new RustRegex("[^)\\s;,]+"), "digits")
             ),
             seq(
-                "rbxassetid://", new RustRegex("\\d+")
+                "rbxassetid://", alias(new RustRegex("[0-9]+"), "digits")
             )
         )),
-        rbx_content: $ => token(seq("contentid://", new RustRegex("\\d+"))),
+        rbx_content: $ => token(seq("contentid://", alias(new RustRegex("[0-9]+"), "digits"))),
 
         comment: $ => choice(
             seq(

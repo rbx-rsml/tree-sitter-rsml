@@ -1664,8 +1664,13 @@
                 "value": "(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://"
               },
               {
-                "type": "PATTERN",
-                "value": "[^)\\s;,]+"
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^)\\s;,]+"
+                },
+                "named": false,
+                "value": "digits"
               }
             ]
           },
@@ -1677,8 +1682,13 @@
                 "value": "rbxassetid://"
               },
               {
-                "type": "PATTERN",
-                "value": "\\d+"
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[0-9]+"
+                },
+                "named": false,
+                "value": "digits"
               }
             ]
           }
@@ -1695,8 +1705,13 @@
             "value": "contentid://"
           },
           {
-            "type": "PATTERN",
-            "value": "\\d+"
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            },
+            "named": false,
+            "value": "digits"
           }
         ]
       }
