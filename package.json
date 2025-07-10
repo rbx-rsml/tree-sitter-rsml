@@ -1,6 +1,6 @@
 {
     "name": "tree-sitter-rsml",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "description": "Rsml grammar for tree-sitter",
     "repository": "https://github.com/tree-sitter/tree-sitter-rsml",
     "license": "MIT",

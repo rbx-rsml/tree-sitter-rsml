@@ -1000,10 +1000,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "macro_call"
-        },
-        {
-          "type": "SYMBOL",
           "name": "tuple"
         },
         {

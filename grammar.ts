@@ -193,7 +193,6 @@ module.exports = grammar({
 
         datatype: $ => choice(
             $.color,
-            $.macro_call,
             $.tuple,
             $.number,
             $.string,

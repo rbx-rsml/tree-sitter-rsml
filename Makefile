@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-rsml
 HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-rsml
-VERSION := 0.1.12
+VERSION := 0.1.13
 
 # repository
 SRC_DIR := src
