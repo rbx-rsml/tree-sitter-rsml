@@ -262,8 +262,8 @@ module.exports = grammar({
         enum_shorthand: $ => prec(5, token(seq(":", IDENTIFIER))),
 
         rbx_asset: $ => token(choice(
-            new RustRegex("(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://[^) ]*"),
-            new RustRegex("rbxassetid://\\d*")
+            new RustRegex("(rbxasset|rbxthumb|rbxgameasset|rbxhttp|rbxtemp|https?)://[^) ]+"),
+            new RustRegex("rbxassetid://\\d+")
         )),
         rbx_content: $ => token(new RustRegex("contentid://\\d+")),
 
