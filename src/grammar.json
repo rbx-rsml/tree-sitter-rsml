@@ -798,6 +798,22 @@
         ]
       }
     },
+    "query_selector": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[_a-zA-Z][_a-zA-Z\\d]*"
+          }
+        ]
+      }
+    },
     "selector": {
       "type": "CHOICE",
       "members": [
@@ -820,6 +836,10 @@
         {
           "type": "SYMBOL",
           "name": "pseudo_selector"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "query_selector"
         },
         {
           "type": "SYMBOL",

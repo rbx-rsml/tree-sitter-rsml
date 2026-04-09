@@ -162,9 +162,10 @@ module.exports = grammar({
         tag_selector: $ => token(seq(".", IDENTIFIER)),
         state_selector:$ => token(seq(":", IDENTIFIER)),
         pseudo_selector: $ => token(seq("::", IDENTIFIER)),
+        query_selector: $ => token(seq("@", IDENTIFIER)),
         selector: $ => choice(
-            $.class_selector, $.name_selector, $.tag_selector, 
-            $.state_selector, $.pseudo_selector, $.static_argument
+            $.class_selector, $.name_selector, $.tag_selector,
+            $.state_selector, $.pseudo_selector, $.query_selector, $.static_argument
         ),
 
         scope_open: $ => "{",

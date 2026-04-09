@@ -173,6 +173,7 @@
   {
     "type": "comment",
     "named": true,
+    "extra": true,
     "fields": {
       "content": {
         "multiple": false,
@@ -459,6 +460,7 @@
   {
     "type": "macro_call",
     "named": true,
+    "extra": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -819,6 +821,10 @@
           "named": true
         },
         {
+          "type": "query_selector",
+          "named": true
+        },
+        {
           "type": "state_selector",
           "named": true
         },
@@ -1105,6 +1111,10 @@
   },
   {
     "type": "pseudo_selector",
+    "named": true
+  },
+  {
+    "type": "query_selector",
     "named": true
   },
   {
