@@ -86,6 +86,7 @@ module.exports = grammar({
             $.token_assignment,
             $.rule_scope,
             $.derive_declaration,
+            $.tween_declaration,
             $._definition_scope_body
         ),
         _definition: $ => choice(
@@ -134,6 +135,7 @@ module.exports = grammar({
             $.operator,
             $.priority_declaration,
             $.name_declaration,
+            $.tween_declaration,
             $._definition_scope_body
         ]),
 
@@ -146,6 +148,7 @@ module.exports = grammar({
 
         priority_declaration: $ => seq('@priority', optional($.number), $.semi_colon),
         name_declaration: $ => seq('@name', optional($.string), $.semi_colon),
+        tween_declaration: $ => seq('@tween', $.identifier, optional($.datatype), $.semi_colon),
 
         derive_declaration: $ => seq("@derive", $.derive_value, $.semi_colon),
         derive_value: $ => choice(
@@ -186,6 +189,7 @@ module.exports = grammar({
             $.rule_scope,
             $.priority_declaration,
             $.name_declaration,
+            $.tween_declaration,
             $.property_assignment,
             $.token_assignment,
             $.static_token_assignment,

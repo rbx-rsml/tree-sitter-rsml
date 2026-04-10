@@ -173,7 +173,6 @@
   {
     "type": "comment",
     "named": true,
-    "extra": true,
     "fields": {
       "content": {
         "multiple": false,
@@ -458,6 +457,10 @@
         {
           "type": "token_assignment",
           "named": true
+        },
+        {
+          "type": "tween_declaration",
+          "named": true
         }
       ]
     }
@@ -465,7 +468,6 @@
   {
     "type": "macro_call",
     "named": true,
-    "extra": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -806,6 +808,10 @@
         {
           "type": "token_assignment",
           "named": true
+        },
+        {
+          "type": "tween_declaration",
+          "named": true
         }
       ]
     }
@@ -880,6 +886,10 @@
         },
         {
           "type": "token_assignment",
+          "named": true
+        },
+        {
+          "type": "tween_declaration",
           "named": true
         }
       ]
@@ -1012,6 +1022,29 @@
     }
   },
   {
+    "type": "tween_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "datatype",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "semi_colon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "--",
     "named": false
   },
@@ -1041,6 +1074,10 @@
   },
   {
     "type": "@priority",
+    "named": false
+  },
+  {
+    "type": "@tween",
     "named": false
   },
   {
