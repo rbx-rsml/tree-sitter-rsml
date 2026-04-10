@@ -356,6 +356,11 @@
     "fields": {}
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "macro_args",
     "named": true,
     "fields": {},
@@ -690,6 +695,11 @@
     }
   },
   {
+    "type": "query_selector",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "rbx_asset",
     "named": true,
     "fields": {}
@@ -1014,6 +1024,10 @@
     "named": false
   },
   {
+    "type": "@",
+    "named": false
+  },
+  {
     "type": "@derive",
     "named": false
   },
@@ -1078,10 +1092,6 @@
     "named": true
   },
   {
-    "type": "identifier",
-    "named": true
-  },
-  {
     "type": "mod_operator",
     "named": true
   },
@@ -1111,10 +1121,6 @@
   },
   {
     "type": "pseudo_selector",
-    "named": true
-  },
-  {
-    "type": "query_selector",
     "named": true
   },
   {

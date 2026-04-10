@@ -79,7 +79,7 @@ module.exports = grammar({
         tag_selector: function ($) { return token(seq(".", IDENTIFIER)); },
         state_selector: function ($) { return token(seq(":", IDENTIFIER)); },
         pseudo_selector: function ($) { return token(seq("::", IDENTIFIER)); },
-        query_selector: function ($) { return token(seq("@", IDENTIFIER)); },
+        query_selector: function ($) { return seq("@", IDENTIFIER); },
         selector: function ($) { return choice($.class_selector, $.name_selector, $.tag_selector, $.state_selector, $.pseudo_selector, $.query_selector, $.static_argument); },
         scope_open: function ($) { return "{"; },
         scope_close: function ($) { return "}"; },
