@@ -173,6 +173,7 @@
   {
     "type": "comment",
     "named": true,
+    "extra": true,
     "fields": {
       "content": {
         "multiple": false,
@@ -423,10 +424,6 @@
           "named": true
         },
         {
-          "type": "name_declaration",
-          "named": true
-        },
-        {
           "type": "operator",
           "named": true
         },
@@ -468,6 +465,7 @@
   {
     "type": "macro_call",
     "named": true,
+    "extra": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -544,25 +542,6 @@
         },
         {
           "type": "scope_open",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "name_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "semi_colon",
-          "named": true
-        },
-        {
-          "type": "string",
           "named": true
         }
       ]
@@ -781,10 +760,6 @@
       "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "name_declaration",
-          "named": true
-        },
         {
           "type": "priority_declaration",
           "named": true
@@ -1066,10 +1041,6 @@
   },
   {
     "type": "@macro",
-    "named": false
-  },
-  {
-    "type": "@name",
     "named": false
   },
   {
